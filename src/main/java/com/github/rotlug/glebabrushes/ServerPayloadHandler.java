@@ -101,33 +101,36 @@ public class ServerPayloadHandler {
         BrushItemStack brush = getBrush(player);
         if (brush == null) return;
 
-        AtomicInteger paintLeft = new AtomicInteger(brush.stack.getMaxDamage() - brush.stack.getDamageValue());
+        AtomicInteger damageAmount = new AtomicInteger(0);
 
         blocks.forEach(blockPos -> {;
-            if (paintLeft.get() <= 0) return;
+            if (damageAmount.get() > brush.damageLeft()) return;
 
             BlockState oldState = level.getBlockState(blockPos);
-            Block block = oldState.getBlock();
+            Block uncolored = oldState.getBlock();
 
-            if (block == Blocks.AIR) return;
+            if (uncolored == Blocks.AIR) return;
 
-            replaceBlock(level, blockPos, getColor(block, color));
+            Block colored = getColor(uncolored, color);
+            if (colored == uncolored) return;
+
+            replaceBlock(level, blockPos, getColor(colored, color));
 
             spawnParticleForBlock(level, blockPos);
-            paintLeft.addAndGet(-1);
+            damageAmount.addAndGet(1);
         });
 
-        player.setItemSlot(brush.slot, brush.stack.hurtAndConvertOnBreak(brush.stack. getMaxDamage() - paintLeft.get(), Items.BRUSH, player, brush.slot));
+        brush.hurt(player, damageAmount.get());
     }
 
     public static void waxBrush(ServerPlayer player, ServerLevel level, Stream<BlockPos> blocks) {
         BrushItemStack brush = getBrush(player);
         if (brush == null) return;
 
-        AtomicInteger paintLeft = new AtomicInteger(brush.stack.getMaxDamage() - brush.stack.getDamageValue());
+        AtomicInteger damageAmount = new AtomicInteger(0);
 
         blocks.forEach(blockPos -> {
-            if (paintLeft.get() <= 0) return;
+            if (damageAmount.get() > brush.damageLeft()) return;
 
             BlockState state = level.getBlockState(blockPos);
             ResourceLocation originalId = BuiltInRegistries.BLOCK.getKey(state.getBlock());
@@ -140,7 +143,11 @@ public class ServerPayloadHandler {
 
             replaceBlock(level, blockPos, waxedBlock);
             spawnParticleForBlock(level, blockPos);
+
+            damageAmount.addAndGet(1);
         });
+
+        brush.hurt(player, damageAmount.get());
     }
 
     public static BrushItemStack getBrush(ServerPlayer player) {
@@ -164,5 +171,13 @@ class BrushItemStack {
     public BrushItemStack(ItemStack stack, EquipmentSlot slot) {
         this.slot = slot;
         this.stack = stack;
+    }
+
+    int damageLeft() {
+        return stack.getMaxDamage() - stack.getDamageValue();
+    }
+
+    void hurt(ServerPlayer player, int amount) {
+        player.setItemSlot(slot, stack.hurtAndConvertOnBreak(amount, Items.BRUSH, player, slot));
     }
 }
