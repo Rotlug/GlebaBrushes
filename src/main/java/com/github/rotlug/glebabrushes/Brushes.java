@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -37,14 +38,15 @@ public class Brushes {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a creative tab with the id "glebabrushes:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("brushes_tab",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BRUSHES_TAB = CREATIVE_MODE_TABS.register("brushes_tab",
             () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.glebabrushes"))
                     .displayItems((parameters, output) -> {
                         BItems.ITEMS.getEntries().forEach(itemDeferredHolder -> {
                             output.accept(itemDeferredHolder.get());
                         });
-                    }).build());
+                    })
+                    .icon(() -> new ItemStack(BItems.PAINT_BRUSH_PINK.get()))
+                    .build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.

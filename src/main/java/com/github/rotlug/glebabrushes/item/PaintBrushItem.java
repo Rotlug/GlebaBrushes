@@ -6,11 +6,10 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.UseOnContext;
 
 public class PaintBrushItem extends BaseBrushItem {
-
     DyeColor dye;
 
     public PaintBrushItem(DyeColor dye) {
-        super(200);
+        super(250);
         this.dye = dye;
     }
 
