@@ -3,6 +3,9 @@ package com.github.rotlug.glebabrushes.item;
 import com.github.rotlug.glebabrushes.BrushPayload;
 import com.github.rotlug.glebabrushes.BrushState;
 import com.github.rotlug.glebabrushes.Brushes;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -48,7 +51,13 @@ public class BaseBrushItem extends Item {
         return new BrushPayload(Brushes.state.name, Brushes.state.startPos, Brushes.state.endPos);
     }
 
-    public void onBrushStart(BrushState state, UseOnContext context) {}
+    public void onBrushStart(BrushState state, UseOnContext context) {
+        state.level.playLocalSound(context.getPlayer(), brushStartSound(), SoundSource.PLAYERS, 1f, 1f);
+    }
 
     public void onBrushEnd(BrushState state, UseOnContext context) {}
+
+    public SoundEvent brushStartSound() {
+        return SoundEvents.WOOL_STEP;
+    }
 }
