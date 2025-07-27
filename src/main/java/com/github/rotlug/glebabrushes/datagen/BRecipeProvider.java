@@ -36,6 +36,7 @@ public class BRecipeProvider extends RecipeProvider {
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.LIME_DYE, 8), PAINT_BRUSH_LIME.get());
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.GREEN_DYE, 8), PAINT_BRUSH_GREEN.get());
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.LIGHT_BLUE_DYE, 8), PAINT_BRUSH_LIGHT_BLUE.get());
+        shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.CYAN_DYE, 8), PAINT_BRUSH_CYAN.get());
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.BLUE_DYE, 8), PAINT_BRUSH_BLUE.get());
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.PURPLE_DYE, 8), PAINT_BRUSH_PURPLE.get());
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.MAGENTA_DYE, 8), PAINT_BRUSH_MAGENTA.get());
