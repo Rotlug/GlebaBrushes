@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_brush": {
+    "has_orange_dye": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:brush"
+            "items": "minecraft:orange_dye"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brush"
+      "has_orange_dye"
     ]
   ],
   "rewards": {

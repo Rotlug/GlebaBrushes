@@ -6,6 +6,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
+import javax.annotation.Nullable;
+
 import static com.github.rotlug.glebabrushes.registry.BItems.*;
 
 public class BLangProvider extends LanguageProvider {
@@ -33,6 +35,9 @@ public class BLangProvider extends LanguageProvider {
         item(PAINT_BRUSH_PINK.get());
         item(PAINT_BRUSH_PURPLE.get());
         item(PAINT_BRUSH_MAGENTA.get());
+        if (SOAP_BRUSH != null) {
+            item(SOAP_BRUSH.get());
+        }
 
         add("itemGroup.glebabrushes", "Brushes");
     }

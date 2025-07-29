@@ -1,6 +1,7 @@
 package com.github.rotlug.glebabrushes.datagen;
 
 import com.github.rotlug.glebabrushes.registry.BItems;
+import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -43,6 +44,7 @@ public class BRecipeProvider extends RecipeProvider {
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.PINK_DYE, 8), PAINT_BRUSH_PINK.get());
 
         shapeless(recipeOutput, Map.of(Items.BRUSH, 1, Items.HONEYCOMB, 1), WAX_BRUSH.get());
+        shapeless(recipeOutput, Map.of(Items.BRUSH, 1, ModRegistry.SOAP.get(), 1), SOAP_BRUSH.get());
     }
 
     public void shapeless(RecipeOutput recipeOutput, Map<ItemLike, Integer> items, Item itemOut) {

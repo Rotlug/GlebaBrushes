@@ -1,17 +1,16 @@
 package com.github.rotlug.glebabrushes.registry;
 
 import com.github.rotlug.glebabrushes.Brushes;
-import com.github.rotlug.glebabrushes.item.BaseBrushItem;
 import com.github.rotlug.glebabrushes.item.PaintBrushItem;
+import com.github.rotlug.glebabrushes.item.SoapBrushItem;
 import com.github.rotlug.glebabrushes.item.WaxBrushItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.openjdk.nashorn.tools.Shell;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nullable;
 
 public class BItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.createItems(Brushes.MODID);
@@ -34,4 +33,6 @@ public class BItems {
     public static DeferredHolder<Item, Item> PAINT_BRUSH_PINK = ITEMS.register("pink_paint_brush", () -> new PaintBrushItem(DyeColor.PINK));
 
     public static DeferredHolder<Item, Item> WAX_BRUSH = ITEMS.register("wax_brush", () -> new WaxBrushItem());
+
+    public static @Nullable DeferredHolder<Item, Item> SOAP_BRUSH = ModList.get().isLoaded("supplementaries") ? ITEMS.register("soap_brush", () -> new SoapBrushItem()) : null;
 }

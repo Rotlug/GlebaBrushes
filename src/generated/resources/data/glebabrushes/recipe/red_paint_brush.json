@@ -3,31 +3,31 @@
   "category": "misc",
   "ingredients": [
     {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
       "item": "minecraft:brush"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:red_dye"
     }
   ],
   "result": {

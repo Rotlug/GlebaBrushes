@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gray_dye": {
+    "has_soap": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:gray_dye"
+            "items": "supplementaries:soap"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "glebabrushes:gray_paint_brush"
+        "recipe": "glebabrushes:soap_brush"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_gray_dye"
+      "has_soap"
     ]
   ],
   "rewards": {
     "recipes": [
-      "glebabrushes:gray_paint_brush"
+      "glebabrushes:soap_brush"
     ]
   }
 }

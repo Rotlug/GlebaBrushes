@@ -1,11 +1,11 @@
 package com.github.rotlug.glebabrushes;
 
+import com.github.rotlug.glebabrushes.compat.Supplementaries;
 import com.github.rotlug.glebabrushes.item.BaseBrushItem;
-import net.mehvahdjukaar.moonlight.api.block.IWaxable;
 import net.mehvahdjukaar.moonlight.api.set.BlocksColorAPI;
-import net.minecraft.client.particle.GlowParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -22,9 +21,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 
+import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
@@ -46,6 +46,7 @@ public class ServerPayloadHandler {
 
         switch (data.brushId()) {
             case "wax" -> {waxBrush(serverPlayer, level, blockPos);}
+            case "soap" -> {paintBrush(serverPlayer, level, blockPos, null);}
             default -> {}
         }
     }
@@ -74,7 +75,6 @@ public class ServerPayloadHandler {
     public static void spawnParticleForBlock(ServerLevel serverLevel, BlockPos blockPos) {
         serverLevel.sendParticles(ParticleTypes.WAX_ON, blockPos.getCenter().x, blockPos.getCenter().y, blockPos.getCenter().z, 5, 0.3, 0.3, 0.3, 1);
     }
-
     public static void replaceBlock(ServerLevel level, BlockPos pos, Block block) {
         CompoundTag entityData = null;
 
@@ -99,7 +99,7 @@ public class ServerPayloadHandler {
     /*
     Method for each brush type
      */
-    public static void paintBrush(ServerPlayer player, ServerLevel level, Stream<BlockPos> blocks, DyeColor color) {
+    public static void paintBrush(ServerPlayer player, ServerLevel level, Stream<BlockPos> blocks, @Nullable DyeColor color) {
         BrushItemStack brush = getBrush(player);
         if (brush == null) return;
 
@@ -122,7 +122,13 @@ public class ServerPayloadHandler {
             damageAmount.addAndGet(1);
         });
 
-        level.playSound(null, player.blockPosition(), SoundEvents.HONEY_BLOCK_SLIDE, SoundSource.PLAYERS);
+        if (color == null && ModList.get().isLoaded("supplementaries")) {
+            level.playSound(null, player.blockPosition(), Supplementaries.soapSound(), SoundSource.PLAYERS);
+        }
+        else {
+            level.playSound(null, player.blockPosition(), SoundEvents.HONEY_BLOCK_SLIDE, SoundSource.PLAYERS);
+        }
+
         brush.hurt(player, damageAmount.get());
     }
 

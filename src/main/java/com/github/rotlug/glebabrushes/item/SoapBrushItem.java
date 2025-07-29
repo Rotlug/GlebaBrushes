@@ -2,24 +2,17 @@ package com.github.rotlug.glebabrushes.item;
 
 import com.github.rotlug.glebabrushes.BrushState;
 import net.createmod.catnip.theme.Color;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.UseOnContext;
 
-import javax.annotation.Nullable;
-
-public class PaintBrushItem extends BaseBrushItem {
-    DyeColor dye;
-
-    public PaintBrushItem(DyeColor dye) {
+public class SoapBrushItem extends BaseBrushItem{
+    public SoapBrushItem() {
         super(250);
-        this.dye = dye;
     }
 
     @Override
     public void onBrushStart(BrushState state, UseOnContext context) {
-        state.name = "paint_" + dye;
-        state.color = new Color(dye.getTextureDiffuseColor());
-
+        state.name = "soap";
+        state.color = new Color(241, 161, 214); // Soap Color
         super.onBrushStart(state, context);
     }
 }

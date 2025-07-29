@@ -104,8 +104,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    implementation "net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}"
     implementation "maven.modrinth:moonlight:${moonlight_version}-neoforge"
+    implementation "maven.modrinth:supplementaries:${supplementaries_version}"
 
     // Example mod dependencfy with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
