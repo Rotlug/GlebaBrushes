@@ -6,8 +6,10 @@ public enum BrushStateError {
     SELECTION_TOO_BIG("selection_too_big");
 
     public final Component translatable;
+    public final String id;
 
     BrushStateError(String id) {
-        this.translatable = Component.translatable(Brushes.MODID + ".error." + id);
+        this.id = Brushes.MODID + ".error." + id;
+        this.translatable = Component.translatable(this.id);
     }
 }

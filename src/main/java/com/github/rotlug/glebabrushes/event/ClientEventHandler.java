@@ -1,9 +1,6 @@
 package com.github.rotlug.glebabrushes.event;
 
-import com.github.rotlug.glebabrushes.BrushState;
-import com.github.rotlug.glebabrushes.BrushStateError;
-import com.github.rotlug.glebabrushes.Brushes;
-import com.github.rotlug.glebabrushes.SpecialTextures;
+import com.github.rotlug.glebabrushes.*;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -57,7 +54,7 @@ public class ClientEventHandler {
             Outliner outliner = Outliner.getInstance();
 
             AABB bb = createAABB(Brushes.state.startPos, Brushes.state.endPos, blockHitResult.getDirection());
-            if (getAABBSize(bb) > 250) {
+            if (getAABBSize(bb) > Config.maxSelectionSize) {
                 Brushes.state.error = BrushStateError.SELECTION_TOO_BIG;
                 player.displayClientMessage(Brushes.state.error.translatable, true);
             }

@@ -3,31 +3,31 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
       "item": "minecraft:brush"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
     }
   ],
   "result": {

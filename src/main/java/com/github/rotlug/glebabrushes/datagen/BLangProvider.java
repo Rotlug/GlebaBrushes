@@ -1,5 +1,6 @@
 package com.github.rotlug.glebabrushes.datagen;
 
+import com.github.rotlug.glebabrushes.BrushStateError;
 import com.github.rotlug.glebabrushes.Brushes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -40,15 +41,12 @@ public class BLangProvider extends LanguageProvider {
         }
 
         add("itemGroup.glebabrushes", "Brushes");
+        add(BrushStateError.SELECTION_TOO_BIG.id, "Selection too Big!");
     }
 
     private void item(Item item) {
         String name = formatString(BuiltInRegistries.ITEM.getKey(item).getPath());
         add(item, name);
-    }
-
-    private void error(String id, String translation) {
-        add(Brushes.MODID + ".error." + id, translation);
     }
 
     private String formatString(String key) {
