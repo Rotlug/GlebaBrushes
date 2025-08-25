@@ -17,13 +17,11 @@ public class BrushState {
     public @Nullable BlockPos endPos;
 
     public Color color;
-    public String name;
 
     public @Nullable BrushStateError error;
 
     public BrushState(Level level) {
         this.level = level;
-        this.name = "";
         this.error = null;
 
         color = Color.WHITE;
@@ -31,7 +29,7 @@ public class BrushState {
 
     @Override
     public String toString() {
-        return String.format("{name=%s,start=%s,end=%s,color=%s}", name, startPos, endPos, color);
+        return String.format("{start=%s,end=%s,color=%s}", startPos, endPos, color);
     }
 }
 

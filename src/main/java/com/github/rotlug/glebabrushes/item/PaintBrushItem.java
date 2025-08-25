@@ -17,9 +17,13 @@ public class PaintBrushItem extends BaseBrushItem {
 
     @Override
     public void onBrushStart(BrushState state, UseOnContext context) {
-        state.name = "paint_" + dye;
         state.color = new Color(dye.getTextureDiffuseColor());
 
         super.onBrushStart(state, context);
+    }
+
+    @Override
+    public String getName() {
+        return "paint_" + dye;
     }
 }

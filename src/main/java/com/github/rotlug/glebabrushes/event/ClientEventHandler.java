@@ -62,7 +62,7 @@ public class ClientEventHandler {
                 Brushes.state.error = null; // TODO: do this better later
             }
 
-            outliner.chaseAABB(Brushes.state.name, bb)
+            outliner.chaseAABB("brush", bb)
                     .colored(Brushes.state.error == null ? Brushes.state.color : Color.RED)
                     .lineWidth(1 / 16f)
                     .withFaceTexture(SpecialTextures.PAINT)

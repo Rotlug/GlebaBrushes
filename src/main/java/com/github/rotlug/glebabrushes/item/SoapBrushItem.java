@@ -11,8 +11,12 @@ public class SoapBrushItem extends BaseBrushItem{
 
     @Override
     public void onBrushStart(BrushState state, UseOnContext context) {
-        state.name = "soap";
         state.color = new Color(241, 161, 214); // Soap Color
         super.onBrushStart(state, context);
+    }
+
+    @Override
+    public String getName() {
+        return "soap";
     }
 }

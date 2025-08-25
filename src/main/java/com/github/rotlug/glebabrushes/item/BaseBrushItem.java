@@ -48,7 +48,7 @@ public class BaseBrushItem extends Item {
 
     public BrushPayload getBrushPayload() {
         assert Brushes.state != null;
-        return new BrushPayload(Brushes.state.name, Brushes.state.startPos, Brushes.state.endPos);
+        return new BrushPayload(getName(), Brushes.state.startPos, Brushes.state.endPos);
     }
 
     public void onBrushStart(BrushState state, UseOnContext context) {
@@ -59,5 +59,9 @@ public class BaseBrushItem extends Item {
 
     public SoundEvent brushStartSound() {
         return SoundEvents.WOOL_STEP;
+    }
+
+    public String getName() {
+        return "";
     }
 }
