@@ -1,3 +1,6 @@
+# Brushes Mod
+src/main/resources/assets/**/*.png
+
 # User-specific stuff
 .idea/
 
