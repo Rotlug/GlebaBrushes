@@ -18,14 +18,17 @@ import java.util.stream.Collectors;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    private static final ModConfigSpec.ConfigValue<Integer> MAX_SELECTION_SIZE = new ModConfigSpec.Builder().define("max_seleciton_size", 250);
+    private static final ModConfigSpec.ConfigValue<Integer> MAX_SELECTION_SIZE = BUILDER.define("max_selection_size", 250);
+    private static final ModConfigSpec.BooleanValue ONE_BLOCK_MODE = BUILDER.define("one_block_mode", false);
 
     public static int maxSelectionSize;
+    public static boolean one_block_mode;
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
         maxSelectionSize = MAX_SELECTION_SIZE.get();
+        one_block_mode = ONE_BLOCK_MODE.get();
     }
 }

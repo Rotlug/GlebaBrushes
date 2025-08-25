@@ -3,6 +3,8 @@ package com.github.rotlug.glebabrushes.item;
 import com.github.rotlug.glebabrushes.BrushPayload;
 import com.github.rotlug.glebabrushes.BrushState;
 import com.github.rotlug.glebabrushes.Brushes;
+import com.github.rotlug.glebabrushes.Config;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -32,6 +34,11 @@ public class BaseBrushItem extends Item {
             return InteractionResult.SUCCESS;
         }
 
+        if (Config.one_block_mode) {
+            PacketDistributor.sendToServer(getBrushPayload(context.getClickedPos()));
+            return InteractionResult.SUCCESS;
+        }
+
         if (Brushes.state == null) {
             Brushes.state = new BrushState(level);
             Brushes.state.startPos = context.getClickedPos();
@@ -49,6 +56,10 @@ public class BaseBrushItem extends Item {
     public BrushPayload getBrushPayload() {
         assert Brushes.state != null;
         return new BrushPayload(getName(), Brushes.state.startPos, Brushes.state.endPos);
+    }
+
+    public BrushPayload getBrushPayload(BlockPos block) {
+        return new BrushPayload(getName(), block, block);
     }
 
     public void onBrushStart(BrushState state, UseOnContext context) {
