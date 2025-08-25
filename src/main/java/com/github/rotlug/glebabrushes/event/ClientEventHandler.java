@@ -1,7 +1,10 @@
 package com.github.rotlug.glebabrushes.event;
 
+import com.github.rotlug.glebabrushes.BrushState;
+import com.github.rotlug.glebabrushes.BrushStateError;
 import com.github.rotlug.glebabrushes.Brushes;
 import com.github.rotlug.glebabrushes.SpecialTextures;
+import net.createmod.catnip.theme.Color;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -53,8 +56,17 @@ public class ClientEventHandler {
             Brushes.state.endPos = blockHitResult.getBlockPos();
             Outliner outliner = Outliner.getInstance();
 
-            outliner.chaseAABB(Brushes.state.name, createAABB(Brushes.state.startPos, Brushes.state.endPos, blockHitResult.getDirection()))
-                    .colored(Brushes.state.color)
+            AABB bb = createAABB(Brushes.state.startPos, Brushes.state.endPos, blockHitResult.getDirection());
+            if (getAABBSize(bb) > 250) {
+                Brushes.state.error = BrushStateError.SELECTION_TOO_BIG;
+                player.displayClientMessage(Brushes.state.error.translatable, true);
+            }
+            else {
+                Brushes.state.error = null; // TODO: do this better later
+            }
+
+            outliner.chaseAABB(Brushes.state.name, bb)
+                    .colored(Brushes.state.error == null ? Brushes.state.color : Color.RED)
                     .lineWidth(1 / 16f)
                     .withFaceTexture(SpecialTextures.PAINT)
             ;
@@ -71,5 +83,9 @@ public class ClientEventHandler {
         int maxZ = Math.max(pos1.getZ(), pos2.getZ()) + 1;
 
         return new AABB(minX, minY, minZ, maxX, maxY, maxZ);
+    }
+
+    public static double getAABBSize(AABB bb) {
+        return bb.getXsize() * bb.getYsize() * bb.getZsize();
     }
 }

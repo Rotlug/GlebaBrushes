@@ -75,6 +75,7 @@ public class ServerPayloadHandler {
     public static void spawnParticleForBlock(ServerLevel serverLevel, BlockPos blockPos) {
         serverLevel.sendParticles(ParticleTypes.WAX_ON, blockPos.getCenter().x, blockPos.getCenter().y, blockPos.getCenter().z, 5, 0.3, 0.3, 0.3, 1);
     }
+
     public static void replaceBlock(ServerLevel level, BlockPos pos, Block block) {
         CompoundTag entityData = null;
 

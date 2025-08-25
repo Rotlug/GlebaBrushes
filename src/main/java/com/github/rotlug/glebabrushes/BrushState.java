@@ -2,7 +2,9 @@ package com.github.rotlug.glebabrushes;
 
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import javax.annotation.Nullable;
 
@@ -17,9 +19,13 @@ public class BrushState {
     public Color color;
     public String name;
 
+    public @Nullable BrushStateError error;
+
     public BrushState(Level level) {
         this.level = level;
         this.name = "";
+        this.error = null;
+
         color = Color.WHITE;
     }
 

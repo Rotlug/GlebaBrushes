@@ -37,7 +37,7 @@ public class BaseBrushItem extends Item {
             Brushes.state.startPos = context.getClickedPos();
             onBrushStart(Brushes.state, context);
         }
-        else {
+        else if (Brushes.state.error == null) {
             PacketDistributor.sendToServer(getBrushPayload());
             onBrushEnd(Brushes.state, context);
             Brushes.state = null;

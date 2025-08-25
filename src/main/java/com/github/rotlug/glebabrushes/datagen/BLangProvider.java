@@ -47,6 +47,10 @@ public class BLangProvider extends LanguageProvider {
         add(item, name);
     }
 
+    private void error(String id, String translation) {
+        add(Brushes.MODID + ".error." + id, translation);
+    }
+
     private String formatString(String key) {
         String[] strArr = key.split("_");
         StringBuffer res = new StringBuffer();
